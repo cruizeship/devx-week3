@@ -17,11 +17,9 @@
 USE devx;
 ```
 
-### *** Replace "table_name" with your name ***
-
 ## Table setup
 ```html
-CREATE TABLE table_name (
+CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     user_email VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL
@@ -34,27 +32,27 @@ SHOW TABLES;
 
 ## Add users
 ```html
-INSERT INTO table_name (user_email, user_password)
+INSERT INTO users (user_email, user_password)
 VALUES ('test@devx.com', 'password123');
 
 ...
 
-INSERT INTO table_name (user_email, user_password)
+INSERT INTO users (user_email, user_password)
 VALUES ('test2@devx.com', 'password456');
 ```
 
 ## View users
 ```html
-SELECT * FROM table_name;
+SELECT * FROM users;
 
 ...
 
-SELECT * FROM table_name WHERE user_id = 1;
+SELECT * FROM users WHERE user_id = 1;
 ```
 
 ## Verify email/password
 ```html
-SELECT * FROM table_name
+SELECT * FROM users
 WHERE user_email = 'test@devx.com' 
 AND user_password = 'password123';
 ```
@@ -93,7 +91,7 @@ db.connect((err) => {
 route.post('/add-user', (req, res) => {
   const { email, password } = req.body;
 
-  const query = 'INSERT INTO table_name (user_email, user_password) VALUES (?, ?)';
+  const query = 'INSERT INTO users (user_email, user_password) VALUES (?, ?)';
   
   db.query(query, [email, password], (err, result) => {
     if (err) {
@@ -109,7 +107,7 @@ route.post('/add-user', (req, res) => {
 route.post('/verify-user', (req, res) => {
   const { email, password } = req.body;
 
-  const query = 'SELECT * FROM table_name WHERE user_email = ? AND user_password = ?';
+  const query = 'SELECT * FROM users WHERE user_email = ? AND user_password = ?';
   
   db.query(query, [email, password], (err, results) => {
     if (err) {
