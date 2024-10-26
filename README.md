@@ -3,16 +3,20 @@
 ## MySQL workbench configuration
 ```html
 1. Click the plus icon next to "MySQL Connections"
-  Connection Name: "devx-demo"
-  Hostname: rds-mysql-devx.chewcesukxbs.us-west-1.rds.amazonaws.com
-  Port: 3306 
-  Username: masterUsername
-  Password: masterPassword (click "Store in Vault/Keychain and enter password")
+    Connection Name: "devx-demo"
+    Hostname: 127.0.0.1 (should be auto-filled)
+    Port: 3306 
+    Username: root
+    Password: password (click "Store in Vault/Keychain and enter password")
 2. Click "Test Connection"
+3. Click "Close" and open the connection
 
 ```
 
-## Select database
+## Database setup
+```html
+CREATE DATABASE IF NOT EXISTS devx;
+```
 ```html
 USE devx;
 ```
@@ -24,9 +28,8 @@ CREATE TABLE users (
     user_email VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL
 );
-
-...
-
+```
+```html
 SHOW TABLES;
 ```
 
@@ -34,9 +37,8 @@ SHOW TABLES;
 ```html
 INSERT INTO users (user_email, user_password)
 VALUES ('test@devx.com', 'password123');
-
-...
-
+```
+```html
 INSERT INTO users (user_email, user_password)
 VALUES ('test2@devx.com', 'password456');
 ```
@@ -44,9 +46,8 @@ VALUES ('test2@devx.com', 'password456');
 ## View users
 ```html
 SELECT * FROM users;
-
-...
-
+```
+```html
 SELECT * FROM users WHERE user_id = 1;
 ```
 
